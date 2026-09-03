@@ -83,6 +83,18 @@ export function conjugate(verb: Verb, tab: VerbTab, form: VerbForm): ConjugatedF
   if (tab === 'irregulares') {
     const f = IRREGULAR_FORMS[verb.hiragana]?.[form];
     if (f) return { kanjiStem: '', kanjiEnding: f.kanji, hiraganaStem: '', hiraganaEnding: f.hiragana };
+
+    // Verbos compuestos con する (勉強する, 電話する, コピーする...) se conjugan
+    // igual que する — solo cambia lo que va antes, nunca la terminación.
+    if (verb.hiragana.endsWith('する') && verb.kanji.endsWith('する')) {
+      const suruForm = IRREGULAR_FORMS['する'][form];
+      return {
+        kanjiStem: verb.kanji.slice(0, -2),
+        kanjiEnding: suruForm.kanji,
+        hiraganaStem: verb.hiragana.slice(0, -2),
+        hiraganaEnding: suruForm.hiragana,
+      };
+    }
   }
 
   const kanjiStem = verb.kanji.slice(0, -1);
@@ -331,7 +343,10 @@ export const FORM_USAGE: Record<VerbForm, string> = {
 export function getRule(verb: Verb, tab: VerbTab, form: VerbForm): string {
   if (form === 'diccionario') return '';
 
-  if (tab === 'irregulares') return `irregular: ${verb.hiragana}`;
+  if (tab === 'irregulares') {
+    if (verb.hiragana !== 'する' && verb.hiragana.endsWith('する')) return 'irregular: する'
+    return `irregular: ${verb.hiragana}`;
+  }
 
   if (tab === 'grupo2') return `-る → ${ICHIDAN_ENDINGS[form]}`;
 
