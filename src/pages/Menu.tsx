@@ -44,7 +44,7 @@ export default function Menu() {
 
         <Link
           to="/lista"
-          className="group flex flex-col gap-3 rounded-3xl border border-card-border bg-surface p-5 text-left transition hover:border-orange-500 hover:shadow-md"
+          className="group flex flex-col gap-3 rounded-3xl border border-card-border bg-surface p-5 text-left transition hover:border-accent hover:shadow-md"
         >
           <div className="flex items-center justify-between">
             <span className="rounded-full bg-orange-100 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-orange-700 dark:bg-orange-500/15 dark:text-orange-300">
@@ -53,7 +53,7 @@ export default function Menu() {
             <span className="text-xs font-medium text-ink-soft">{ALL_VERBS.length} verbos</span>
           </div>
           <div>
-            <List size={40} strokeWidth={1.75} className="text-ink group-hover:text-orange-500" />
+            <List size={40} strokeWidth={1.75} className="text-ink group-hover:text-accent" />
           </div>
           <span className="text-sm text-ink-soft">Buscá cualquier verbo y mirá todas sus formas conjugadas juntas.</span>
         </Link>
