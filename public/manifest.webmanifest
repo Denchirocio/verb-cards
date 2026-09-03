@@ -1,0 +1,12 @@
+{
+  "name": "Verbos · Cards",
+  "short_name": "Verbos",
+  "description": "Practicá conjugación de verbos japoneses con flashcards",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6EFE3",
+  "theme_color": "#F6EFE3",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
