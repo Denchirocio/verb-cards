@@ -217,6 +217,7 @@ export interface FormGroup {
   id: string
   title: string
   jp: string
+  romaji: string
   description: string
   colorClass: string
   forms: VerbForm[]
@@ -227,6 +228,7 @@ export const FORM_GROUPS: FormGroup[] = [
     id: 'basica',
     title: 'Diccionario',
     jp: '辞書形',
+    romaji: 'jisho-kei',
     description: 'La forma neutra, la que aparece en el diccionario.',
     colorClass: 'bg-amber-100 text-amber-700',
     forms: ['diccionario'],
@@ -235,6 +237,7 @@ export const FORM_GROUPS: FormGroup[] = [
     id: 'cortes',
     title: 'Cortés',
     jp: 'ます',
+    romaji: 'masu',
     description: 'Presente y pasado, afirmativo y negativo, en registro formal.',
     colorClass: 'bg-indigo-100 text-indigo-700',
     forms: ['masu', 'masen', 'mashita', 'masendeshita'],
@@ -243,6 +246,7 @@ export const FORM_GROUPS: FormGroup[] = [
     id: 'negativo',
     title: 'Negativo',
     jp: 'ない',
+    romaji: 'nai',
     description: 'Negación informal, presente y pasado.',
     colorClass: 'bg-rose-100 text-rose-700',
     forms: ['nai', 'nakatta'],
@@ -251,6 +255,7 @@ export const FORM_GROUPS: FormGroup[] = [
     id: 'te-ta',
     title: 'Forma て・た',
     jp: 'て・た',
+    romaji: 'te / ta',
     description: 'Conectar oraciones (て) y el pasado informal (た).',
     colorClass: 'bg-accent-soft text-accent',
     forms: ['te', 'ta'],
@@ -259,6 +264,7 @@ export const FORM_GROUPS: FormGroup[] = [
     id: 'progresivo',
     title: 'Progresivo',
     jp: 'ている',
+    romaji: 'te iru',
     description: 'Acción en curso o estado resultante, en las cuatro variantes.',
     colorClass: 'bg-sky-100 text-sky-700',
     forms: ['teimasu', 'teimasen', 'teimashita', 'teimasendeshita'],

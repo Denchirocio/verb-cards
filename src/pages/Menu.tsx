@@ -26,9 +26,12 @@ export default function Menu() {
                 {group.forms.length === 1 ? '1 forma' : `${group.forms.length} formas`}
               </span>
             </div>
-            <span className="font-serif text-4xl font-semibold text-ink group-hover:text-accent">
-              {group.jp}
-            </span>
+            <div>
+              <span className="font-serif text-4xl font-semibold text-ink group-hover:text-accent">
+                {group.jp}
+              </span>
+              <span className="block text-sm italic text-ink-soft">{group.romaji}</span>
+            </div>
             <span className="text-sm text-ink-soft">{group.description}</span>
           </Link>
         ))}
