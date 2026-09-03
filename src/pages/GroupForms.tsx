@@ -16,14 +16,10 @@ export default function GroupForms() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 py-8">
-      <span className={`w-fit rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${group.colorClass}`}>
-        {group.title}
-      </span>
-      <div className="mt-3 flex items-center gap-2">
+      <div className="flex items-center gap-2">
         <BackButton />
-        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Elegí una forma</h1>
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">{group.title}</h1>
       </div>
-      <p className="mt-2 text-ink-soft">{group.description}</p>
 
       <div className="mt-6 grid grid-cols-2 gap-3">
         {group.forms.map((form) => (
