@@ -6,6 +6,7 @@ import { VERB_TABS } from '../data/verbsData'
 import { conjugate, FORM_LABELS, FORM_TAG, FORM_USAGE, getRule, type VerbForm } from '../utils/verbConjugation'
 import { shuffle } from '../utils/shuffle'
 import { capitalize } from '../utils/text'
+import { hiraganaToRomaji } from '../utils/hiraganaToRomaji'
 import BackButton from '../components/BackButton'
 import ListaLink from '../components/ListaLink'
 import SpeakButton from '../components/SpeakButton'
@@ -52,6 +53,7 @@ export default function Practice() {
   const conjugated = conjugate(verb, verb.tab, verbForm)
   const rule = getRule(verb, verb.tab, verbForm)
   const grupoLabel = VERB_TABS.find((t) => t.id === verb.tab)?.label ?? ''
+  const conjugatedRomaji = hiraganaToRomaji(`${conjugated.hiraganaStem}${conjugated.hiraganaEnding}`).toUpperCase()
 
   const peekIndex = dragX < 0 ? (index + 1) % deck.length : (index - 1 + deck.length) % deck.length
   const peekVerb = deck[peekIndex]
@@ -134,7 +136,7 @@ export default function Practice() {
       </div>
 
       <div className="mt-4 flex w-full flex-1 flex-col items-center">
-        <div className="relative w-full min-h-[420px] max-w-xl flex-1">
+        <div className="relative w-full min-h-[480px] max-w-xl flex-1">
           <div
             aria-hidden
             className="absolute inset-0 rounded-3xl border border-card-border bg-cream-2"
@@ -173,54 +175,55 @@ export default function Practice() {
             className="absolute inset-0 flex cursor-grab select-none flex-col rounded-3xl border border-card-border bg-white p-6 text-left shadow-sm active:cursor-grabbing"
           >
             <div className="flex items-center justify-between">
-              <span className={`rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${FORM_TAG[verbForm].className}`}>
+              <span className={`rounded-full px-3 py-1.5 text-sm font-bold uppercase tracking-wide ${FORM_TAG[verbForm].className}`}>
                 {label.jp}
               </span>
-              <span className="rounded-full border border-card-border px-2.5 py-1 text-xs font-medium text-ink-soft">
+              <span className="rounded-full border border-card-border px-3 py-1.5 text-sm font-medium text-ink-soft">
                 Grupo {GRUPO_NUM[verb.tab]} · {grupoLabel}
               </span>
             </div>
 
             {!flipped ? (
-              <div className="flex flex-1 flex-col items-center justify-center gap-2 text-center">
-                <span className="text-base text-ink-soft">{verb.hiragana}</span>
-                <span className="font-serif text-4xl font-semibold break-words text-ink sm:text-5xl">
+              <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
+                <span className="text-xl text-ink-soft">{verb.hiragana}</span>
+                <span className="font-serif text-5xl font-semibold break-words text-ink sm:text-6xl">
                   {verb.kanji}
                 </span>
-                <span className="text-sm italic tracking-wide text-ink-soft">{verb.romaji.toUpperCase()}</span>
-                <SpeakButton text={verb.hiragana} size={22} className="h-10 w-10" />
-                <div className="my-2 h-px w-14 bg-card-border" />
-                <span className="text-lg text-ink-soft">{capitalize(verb.meaning)}</span>
-                <div className="my-2 h-px w-14 bg-card-border" />
-                <span className="flex items-center gap-1.5 text-xs uppercase tracking-wide text-ink-soft">
-                  <RefreshCw size={12} />
+                <span className="text-lg italic tracking-wide text-ink-soft">{verb.romaji.toUpperCase()}</span>
+                <SpeakButton text={verb.hiragana} size={24} className="h-11 w-11" />
+                <div className="my-1 h-px w-16 bg-card-border" />
+                <span className="text-2xl text-ink-soft">{capitalize(verb.meaning)}</span>
+                <div className="my-1 h-px w-16 bg-card-border" />
+                <span className="flex items-center gap-1.5 text-sm uppercase tracking-wide text-ink-soft">
+                  <RefreshCw size={14} />
                   Tocá la card para ver la respuesta
                 </span>
               </div>
             ) : (
-              <div className="flex flex-1 flex-col items-center justify-center gap-2 text-center">
-                <span className="break-words text-base text-ink-soft">
+              <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
+                <span className="break-words text-xl text-ink-soft">
                   {conjugated.hiraganaStem}
                   <span className="text-accent">{conjugated.hiraganaEnding}</span>
                 </span>
-                <span className="font-serif text-4xl font-semibold break-words text-ink sm:text-5xl">
+                <span className="font-serif text-5xl font-semibold break-words text-ink sm:text-6xl">
                   {conjugated.kanjiStem}
                   <span className="text-accent">{conjugated.kanjiEnding}</span>
                 </span>
+                <span className="text-lg italic tracking-wide text-ink-soft">{conjugatedRomaji}</span>
                 <SpeakButton
                   text={`${conjugated.hiraganaStem}${conjugated.hiraganaEnding}`}
-                  size={22}
-                  className="h-10 w-10"
+                  size={24}
+                  className="h-11 w-11"
                 />
-                <div className="my-2 h-px w-14 bg-card-border" />
-                <span className="text-lg text-ink-soft">{capitalize(verb.meaning)}</span>
+                <div className="my-1 h-px w-16 bg-card-border" />
+                <span className="text-2xl text-ink-soft">{capitalize(verb.meaning)}</span>
                 {rule && (
-                  <span className="mt-1 rounded-lg border border-accent px-3 py-1.5 font-mono text-sm font-semibold text-accent">
+                  <span className="mt-1 rounded-lg border border-accent px-3.5 py-2 font-mono text-base font-semibold text-accent">
                     {rule}
                   </span>
                 )}
-                <div className="my-2 h-px w-14 bg-card-border" />
-                <p className="max-w-sm text-xs leading-snug text-ink-soft">{FORM_USAGE[verbForm]}</p>
+                <div className="my-1 h-px w-16 bg-card-border" />
+                <p className="max-w-sm text-sm leading-snug text-ink-soft">{FORM_USAGE[verbForm]}</p>
               </div>
             )}
           </div>
