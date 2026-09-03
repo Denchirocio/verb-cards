@@ -37,8 +37,8 @@ export default function Practice() {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-1 flex-col items-center px-4 py-6">
-      <div className="flex w-full items-center justify-between">
+    <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center px-4 py-6">
+      <div className="flex w-full max-w-xl items-center justify-between">
         <span className="font-serif text-xl font-semibold text-ink">{label.title}</span>
         <button
           onClick={reshuffle}
@@ -60,7 +60,7 @@ export default function Practice() {
 
         <button
           onClick={() => setFlipped((f) => !f)}
-          className="relative aspect-4/5 w-full max-w-sm cursor-pointer overflow-hidden rounded-3xl border border-card-border bg-white p-6 text-left shadow-sm transition hover:shadow-md"
+          className="relative aspect-3/2 w-full max-w-xl cursor-pointer overflow-hidden rounded-3xl border border-card-border bg-white p-6 text-left shadow-sm transition hover:shadow-md"
         >
           <div className="flex items-center justify-between">
             <span className="rounded-full bg-accent-soft px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-accent">
@@ -72,18 +72,18 @@ export default function Practice() {
           </div>
 
           {!flipped ? (
-            <div className="flex h-full flex-col items-center justify-center gap-3 pb-8 text-center">
-              <span className="font-serif text-5xl font-semibold text-ink">{verb.kanji}</span>
+            <div className="flex h-[calc(100%-2rem)] flex-col items-center justify-center gap-1.5 text-center">
+              <span className="font-serif text-4xl font-semibold text-ink sm:text-5xl">{verb.kanji}</span>
               <span className="text-lg text-ink-soft">{verb.hiragana}</span>
               <span className="text-sm italic text-ink-soft">{verb.romaji}</span>
-              <span className="mt-2 text-base text-ink-soft">{verb.meaning}</span>
-              <span className="mt-6 text-xs uppercase tracking-wide text-ink-soft/70">
+              <span className="text-base text-ink-soft">{verb.meaning}</span>
+              <span className="mt-3 text-xs uppercase tracking-wide text-ink-soft/70">
                 Tocá la card para ver la respuesta
               </span>
             </div>
           ) : (
-            <div className="flex h-full flex-col items-center justify-center gap-3 pb-8 text-center">
-              <span className="font-serif text-4xl font-semibold text-ink">
+            <div className="flex h-[calc(100%-2rem)] flex-col items-center justify-center gap-2 text-center">
+              <span className="font-serif text-4xl font-semibold text-ink sm:text-5xl">
                 {conjugated.kanjiStem}
                 <span className="text-accent">{conjugated.kanjiEnding}</span>
               </span>
@@ -92,7 +92,7 @@ export default function Practice() {
                 <span className="text-accent">{conjugated.hiraganaEnding}</span>
               </span>
               {rule && (
-                <span className="mt-3 rounded-lg border border-accent px-3 py-1.5 font-mono text-sm font-semibold text-accent">
+                <span className="mt-2 rounded-lg border border-accent px-3 py-1.5 font-mono text-sm font-semibold text-accent">
                   {rule}
                 </span>
               )}

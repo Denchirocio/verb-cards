@@ -4,13 +4,14 @@
   --font-sans: "Inter", system-ui, sans-serif;
   --font-serif: "Fraunces", Georgia, serif;
 
-  --color-cream: #f6efe3;
-  --color-cream-2: #efe6d6;
-  --color-ink: #2a2420;
-  --color-ink-soft: #6b6058;
-  --color-accent: #c9463c;
-  --color-accent-soft: #e8cfc2;
-  --color-card-border: #e6dcc9;
+  --color-cream: #ffffff;
+  --color-cream-2: #f1f3f6;
+  --color-ink: #101930;
+  --color-ink-soft: #626b80;
+  --color-accent: #00ab93;
+  --color-accent-soft: #d9f2ec;
+  --color-mint: #6fd8b4;
+  --color-card-border: #e3e6ec;
 }
 
 :root {

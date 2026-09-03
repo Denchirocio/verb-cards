@@ -19,7 +19,9 @@ export default function Layout() {
               <ChevronLeft size={22} />
             </Link>
           )}
-          <span className="font-serif text-lg font-semibold tracking-tight">動詞 Verbos</span>
+          <Link to="/" className="flex items-center">
+            <img src="/logo.png" alt="Dōshiru" className="h-6 w-auto sm:h-7" />
+          </Link>
         </div>
         {!isList && (
           <Link

@@ -1,12 +1,12 @@
 {
-  "name": "Verbos · Cards",
-  "short_name": "Verbos",
+  "name": "Dōshiru · どうしる",
+  "short_name": "Dōshiru",
   "description": "Practicá conjugación de verbos japoneses con flashcards",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F6EFE3",
-  "theme_color": "#F6EFE3",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
   "icons": [
-    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ]
 }
