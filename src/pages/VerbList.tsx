@@ -3,6 +3,7 @@ import { VERB_TABS, type VerbTab } from '../data/verbsData'
 import { ALL_VERBS } from '../data/deck'
 import { Search } from 'lucide-react'
 import BackButton from '../components/BackButton'
+import SpeakButton from '../components/SpeakButton'
 
 export default function VerbList() {
   const [query, setQuery] = useState('')
@@ -70,12 +71,15 @@ export default function VerbList() {
       <ul className="mt-5 divide-y divide-card-border overflow-hidden rounded-2xl border border-card-border bg-white">
         {verbs.map((v) => (
           <li key={`${v.tab}-${v.kanji}`} className="flex items-center justify-between gap-4 px-4 py-3">
-            <div>
-              <div className="flex items-baseline gap-2">
-                <span className="font-serif text-lg font-semibold text-ink">{v.kanji}</span>
-                <span className="text-sm text-ink-soft">{v.hiragana}</span>
+            <div className="flex items-center gap-1">
+              <div>
+                <div className="flex items-baseline gap-2">
+                  <span className="font-serif text-lg font-semibold text-ink">{v.kanji}</span>
+                  <span className="text-sm text-ink-soft">{v.hiragana}</span>
+                </div>
+                <span className="text-xs text-ink-soft">{v.romaji}</span>
               </div>
-              <span className="text-xs text-ink-soft">{v.romaji}</span>
+              <SpeakButton text={v.hiragana} size={16} className="h-7 w-7" />
             </div>
             <span className="text-right text-sm text-ink-soft">{v.meaning}</span>
           </li>

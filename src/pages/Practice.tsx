@@ -6,6 +6,7 @@ import { conjugate, FORM_LABELS, FORM_USAGE, getRule, type VerbForm } from '../u
 import { shuffle } from '../utils/shuffle'
 import BackButton from '../components/BackButton'
 import ListaLink from '../components/ListaLink'
+import SpeakButton from '../components/SpeakButton'
 
 const VALID_FORMS = new Set(Object.keys(FORM_LABELS))
 
@@ -66,8 +67,13 @@ export default function Practice() {
           <ChevronLeft size={22} />
         </button>
 
-        <button
+        <div
+          role="button"
+          tabIndex={0}
           onClick={() => setFlipped((f) => !f)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') setFlipped((f) => !f)
+          }}
           className="relative w-full max-w-xl cursor-pointer rounded-3xl border border-card-border bg-white p-6 text-left shadow-sm transition hover:shadow-md"
         >
           <div className="flex items-center justify-between">
@@ -84,7 +90,10 @@ export default function Practice() {
               <span className="font-serif text-3xl font-semibold break-words text-ink sm:text-4xl">
                 {verb.kanji}
               </span>
-              <span className="text-lg text-ink-soft">{verb.hiragana}</span>
+              <span className="flex items-center gap-1 text-lg text-ink-soft">
+                {verb.hiragana}
+                <SpeakButton text={verb.hiragana} />
+              </span>
               <span className="text-sm italic text-ink-soft">{verb.romaji}</span>
               <span className="text-base text-ink-soft">{verb.meaning}</span>
               <span className="mt-3 text-xs uppercase tracking-wide text-ink-soft/70">
@@ -97,9 +106,10 @@ export default function Practice() {
                 {conjugated.kanjiStem}
                 <span className="text-accent">{conjugated.kanjiEnding}</span>
               </span>
-              <span className="text-lg break-words text-ink-soft">
+              <span className="flex items-center gap-1 text-lg break-words text-ink-soft">
                 {conjugated.hiraganaStem}
                 <span className="text-accent">{conjugated.hiraganaEnding}</span>
+                <SpeakButton text={`${conjugated.hiraganaStem}${conjugated.hiraganaEnding}`} />
               </span>
               <span className="text-sm text-ink-soft">{verb.meaning}</span>
               {rule && (
@@ -110,7 +120,7 @@ export default function Practice() {
               <p className="mt-1 max-w-sm text-xs leading-snug text-ink-soft/80">{FORM_USAGE[verbForm]}</p>
             </div>
           )}
-        </button>
+        </div>
 
         <button
           onClick={() => go(1)}
