@@ -230,7 +230,7 @@ export const FORM_GROUPS: FormGroup[] = [
     jp: '辞書形',
     romaji: 'jisho-kei',
     description: 'La forma neutra, la que aparece en el diccionario.',
-    colorClass: 'bg-amber-100 text-amber-700',
+    colorClass: 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300',
     forms: ['diccionario'],
   },
   {
@@ -239,7 +239,7 @@ export const FORM_GROUPS: FormGroup[] = [
     jp: 'ます',
     romaji: 'masu',
     description: 'Presente y pasado, afirmativo y negativo, en registro formal.',
-    colorClass: 'bg-indigo-100 text-indigo-700',
+    colorClass: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300',
     forms: ['masu', 'masen', 'mashita', 'masendeshita'],
   },
   {
@@ -248,7 +248,7 @@ export const FORM_GROUPS: FormGroup[] = [
     jp: 'ない',
     romaji: 'nai',
     description: 'Negación informal, presente y pasado.',
-    colorClass: 'bg-rose-100 text-rose-700',
+    colorClass: 'bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300',
     forms: ['nai', 'nakatta'],
   },
   {
@@ -266,7 +266,7 @@ export const FORM_GROUPS: FormGroup[] = [
     jp: 'ている',
     romaji: 'te iru',
     description: 'Acción en curso o estado resultante, en las cuatro variantes.',
-    colorClass: 'bg-sky-100 text-sky-700',
+    colorClass: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300',
     forms: ['teimasu', 'teimasen', 'teimashita', 'teimasendeshita'],
   },
 ]
@@ -277,19 +277,19 @@ export const ALL_FORMS: VerbForm[] = FORM_GROUPS.flatMap((g) => g.forms)
 // FORM_GROUPS (て y た comparten grupo pero cumplen roles distintos: una
 // conecta oraciones, la otra es el pasado informal en sí).
 export const FORM_TAG: Record<VerbForm, { label: string; className: string }> = {
-  diccionario:     { label: 'Básica',     className: 'bg-amber-100 text-amber-700' },
-  nai:             { label: 'Negativo',   className: 'bg-rose-100 text-rose-700' },
-  nakatta:         { label: 'Negativo',   className: 'bg-rose-100 text-rose-700' },
-  masu:            { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700' },
-  masen:           { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700' },
-  mashita:         { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700' },
-  masendeshita:    { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700' },
+  diccionario:     { label: 'Básica',     className: 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300' },
+  nai:             { label: 'Negativo',   className: 'bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300' },
+  nakatta:         { label: 'Negativo',   className: 'bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300' },
+  masu:            { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300' },
+  masen:           { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300' },
+  mashita:         { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300' },
+  masendeshita:    { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300' },
   te:              { label: 'Conexión',   className: 'bg-accent-soft text-accent' },
-  ta:              { label: 'Informal',   className: 'bg-slate-100 text-slate-600' },
-  teimasu:         { label: 'Progresivo', className: 'bg-sky-100 text-sky-700' },
-  teimasen:        { label: 'Progresivo', className: 'bg-sky-100 text-sky-700' },
-  teimashita:      { label: 'Progresivo', className: 'bg-sky-100 text-sky-700' },
-  teimasendeshita: { label: 'Progresivo', className: 'bg-sky-100 text-sky-700' },
+  ta:              { label: 'Informal',   className: 'bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-300' },
+  teimasu:         { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300' },
+  teimasen:        { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300' },
+  teimashita:      { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300' },
+  teimasendeshita: { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300' },
 }
 
 export const FORM_LABELS: Record<VerbForm, { title: string; jp: string }> = {

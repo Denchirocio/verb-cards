@@ -30,7 +30,7 @@ export default function GroupForms() {
           <button
             key={form}
             onClick={() => navigate(`/practicar/${form}`)}
-            className="group flex flex-col gap-1 rounded-2xl border border-card-border bg-white px-4 py-4 text-left transition hover:border-accent hover:shadow-md"
+            className="group flex flex-col gap-1 rounded-2xl border border-card-border bg-surface px-4 py-4 text-left transition hover:border-accent hover:shadow-md"
           >
             <div className="flex items-center justify-between">
               <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${FORM_TAG[form].className}`}>

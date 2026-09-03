@@ -144,7 +144,7 @@ export default function Practice() {
           />
           <div
             aria-hidden
-            className="absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-3xl border border-card-border bg-white text-center"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-3xl border border-card-border bg-surface text-center"
             style={{ transform: 'scale(0.96) translateY(9px)' }}
           >
             <span className="font-serif text-3xl font-semibold text-ink/30 sm:text-4xl">{peekVerb.kanji}</span>
@@ -172,7 +172,7 @@ export default function Practice() {
               transition: dragging || suppressTransition ? 'none' : 'transform 220ms ease',
               touchAction: 'pan-y',
             }}
-            className="absolute inset-0 flex cursor-grab select-none flex-col rounded-3xl border border-card-border bg-white p-6 text-left shadow-sm active:cursor-grabbing"
+            className="absolute inset-0 flex cursor-grab select-none flex-col rounded-3xl border border-card-border bg-surface p-6 text-left shadow-sm active:cursor-grabbing"
           >
             <div className="flex items-center justify-between">
               <span className={`rounded-full px-3 py-1.5 text-sm font-bold uppercase tracking-wide ${FORM_TAG[verbForm].className}`}>

@@ -20,7 +20,7 @@ export default function Menu() {
           <Link
             key={group.id}
             to={`/grupo/${group.id}`}
-            className="group flex flex-col gap-3 rounded-3xl border border-card-border bg-white p-5 text-left transition hover:border-accent hover:shadow-md"
+            className="group flex flex-col gap-3 rounded-3xl border border-card-border bg-surface p-5 text-left transition hover:border-accent hover:shadow-md"
           >
             <div className="flex items-center justify-between">
               <span className={`rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${group.colorClass}`}>

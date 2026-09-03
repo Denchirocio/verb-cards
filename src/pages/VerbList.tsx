@@ -33,7 +33,7 @@ export default function VerbList() {
         </h1>
       </div>
 
-      <div className="mt-4 flex items-center gap-2 rounded-full border border-card-border bg-white px-4 py-2.5">
+      <div className="mt-4 flex items-center gap-2 rounded-full border border-card-border bg-surface px-4 py-2.5">
         <Search size={18} className="text-ink-soft" />
         <input
           value={query}
@@ -49,7 +49,7 @@ export default function VerbList() {
           className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition ${
             tab === 'todos'
               ? 'border-accent bg-accent-soft text-accent'
-              : 'border-card-border bg-white text-ink-soft'
+              : 'border-card-border bg-surface text-ink-soft'
           }`}
         >
           Todos ({ALL_VERBS.length})
@@ -61,7 +61,7 @@ export default function VerbList() {
             className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition ${
               tab === t.id
                 ? 'border-accent bg-accent-soft text-accent'
-                : 'border-card-border bg-white text-ink-soft'
+                : 'border-card-border bg-surface text-ink-soft'
             }`}
           >
             {t.label}
@@ -69,10 +69,11 @@ export default function VerbList() {
         ))}
       </div>
 
-      <ul className="mt-5 divide-y divide-card-border overflow-hidden rounded-2xl border border-card-border bg-white">
+      <ul className="mt-5 divide-y divide-card-border overflow-hidden rounded-2xl border border-card-border bg-surface">
         {verbs.map((v) => (
           <li key={`${v.tab}-${v.kanji}`} className="flex items-center justify-between gap-4 px-4 py-4">
             <div className="flex items-center gap-1.5">
+              <SpeakButton text={v.hiragana} size={19} className="h-8 w-8" />
               <div>
                 <div className="flex items-baseline gap-2">
                   <span className="font-serif text-2xl font-semibold text-ink">{v.kanji}</span>
@@ -80,7 +81,6 @@ export default function VerbList() {
                 </div>
                 <span className="text-sm text-ink-soft">{v.romaji}</span>
               </div>
-              <SpeakButton text={v.hiragana} size={19} className="h-8 w-8" />
             </div>
             <span className="text-right text-base text-ink-soft">{capitalize(v.meaning)}</span>
           </li>

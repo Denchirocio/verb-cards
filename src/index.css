@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-sans: "Inter", system-ui, sans-serif;
   --font-serif: "Fraunces", Georgia, serif;
 
   --color-cream: #ffffff;
+  --color-surface: #ffffff;
   --color-cream-2: #f1f3f6;
   --color-ink: #101930;
   --color-ink-soft: #626b80;
@@ -18,6 +21,18 @@
   color-scheme: light;
 }
 
+.dark {
+  color-scheme: dark;
+  --color-cream: #10141b;
+  --color-surface: #181d26;
+  --color-cream-2: #212733;
+  --color-ink: #f2f4f7;
+  --color-ink-soft: #99a2b3;
+  --color-accent: #00ab93;
+  --color-accent-soft: #113630;
+  --color-card-border: #2a3140;
+}
+
 body {
   margin: 0;
   background-color: var(--color-cream);
@@ -27,6 +42,11 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.dark body {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
 }
 
 #root {
