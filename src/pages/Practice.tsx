@@ -90,8 +90,8 @@ export default function Practice() {
               <span className="font-serif text-3xl font-semibold break-words text-ink sm:text-4xl">
                 {verb.kanji}
               </span>
-              <SpeakButton text={verb.hiragana} size={20} className="h-8 w-8" />
               <span className="text-lg text-ink-soft">{verb.hiragana}</span>
+              <SpeakButton text={verb.hiragana} size={20} className="h-8 w-8" />
               <span className="text-sm italic text-ink-soft">{verb.romaji}</span>
               <span className="text-base text-ink-soft">{verb.meaning}</span>
               <span className="mt-3 text-xs uppercase tracking-wide text-ink-soft/70">
@@ -104,11 +104,11 @@ export default function Practice() {
                 {conjugated.kanjiStem}
                 <span className="text-accent">{conjugated.kanjiEnding}</span>
               </span>
-              <SpeakButton text={`${conjugated.hiraganaStem}${conjugated.hiraganaEnding}`} size={20} className="h-8 w-8" />
               <span className="break-words text-lg text-ink-soft">
                 {conjugated.hiraganaStem}
                 <span className="text-accent">{conjugated.hiraganaEnding}</span>
               </span>
+              <SpeakButton text={`${conjugated.hiraganaStem}${conjugated.hiraganaEnding}`} size={20} className="h-8 w-8" />
               <span className="text-sm text-ink-soft">{verb.meaning}</span>
               {rule && (
                 <span className="mt-1 rounded-lg border border-accent px-3 py-1.5 font-mono text-sm font-semibold text-accent">
