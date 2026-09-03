@@ -256,10 +256,6 @@ export default function Practice() {
                 </span>
               </div>
 
-              <div className="mt-3 flex justify-center">
-                <KnownToggle known={known} onToggle={handleToggleKnown} />
-              </div>
-
               {!flipped ? (
                 <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
                   <span className="text-xl text-ink-soft">{verb.hiragana}</span>
@@ -273,8 +269,9 @@ export default function Practice() {
                   <div className="my-1 h-px w-16 bg-card-border" />
                   <span className="flex items-center gap-1.5 text-sm uppercase tracking-wide text-ink-soft">
                     <RefreshCw size={14} />
-                    Tocá la card para ver la respuesta
+                    Tocá para voltear
                   </span>
+                  <KnownToggle known={known} onToggle={handleToggleKnown} />
                 </div>
               ) : (
                 <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
@@ -301,6 +298,7 @@ export default function Practice() {
                   )}
                   <div className="my-1 h-px w-16 bg-card-border" />
                   <p className="max-w-sm text-sm leading-snug text-ink-soft">{FORM_USAGE[verbForm]}</p>
+                  <KnownToggle known={known} onToggle={handleToggleKnown} />
                 </div>
               )}
             </div>
