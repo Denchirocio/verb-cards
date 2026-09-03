@@ -271,7 +271,7 @@ export default function Practice() {
                     <RefreshCw size={14} />
                     Tocá para voltear
                   </span>
-                  <div className="mt-auto pt-3">
+                  <div className="mt-10">
                     <KnownToggle known={known} onToggle={handleToggleKnown} />
                   </div>
                 </div>
@@ -300,7 +300,7 @@ export default function Practice() {
                   )}
                   <div className="my-1 h-px w-16 bg-card-border" />
                   <p className="max-w-sm text-sm leading-snug text-ink-soft">{FORM_USAGE[verbForm]}</p>
-                  <div className="mt-auto pt-3">
+                  <div className="mt-10">
                     <KnownToggle known={known} onToggle={handleToggleKnown} />
                   </div>
                 </div>
