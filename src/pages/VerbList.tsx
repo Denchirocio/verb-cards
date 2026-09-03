@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router'
 import { VERB_TABS, type VerbTab } from '../data/verbsData'
 import { ALL_VERBS } from '../data/deck'
 import { Search } from 'lucide-react'
@@ -7,6 +8,7 @@ import SpeakButton from '../components/SpeakButton'
 import { capitalize } from '../utils/text'
 
 export default function VerbList() {
+  const navigate = useNavigate()
   const [query, setQuery] = useState('')
   const [tab, setTab] = useState<VerbTab | 'todos'>('todos')
 
@@ -71,7 +73,11 @@ export default function VerbList() {
 
       <ul className="mt-5 divide-y divide-card-border overflow-hidden rounded-2xl border border-card-border bg-surface">
         {verbs.map((v) => (
-          <li key={`${v.tab}-${v.kanji}`} className="flex items-center justify-between gap-4 px-4 py-4">
+          <li
+            key={`${v.tab}-${v.kanji}`}
+            onClick={() => navigate(`/verbo/${encodeURIComponent(v.kanji)}`)}
+            className="flex cursor-pointer items-center justify-between gap-4 px-4 py-4 transition hover:bg-cream-2"
+          >
             <div className="flex items-center gap-1.5">
               <SpeakButton text={v.hiragana} size={19} className="h-8 w-8" />
               <div>
