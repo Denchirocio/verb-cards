@@ -78,7 +78,7 @@ export default function VerbList() {
             onClick={() => navigate(`/verbo/${encodeURIComponent(v.kanji)}`)}
             className="flex cursor-pointer items-center justify-between gap-4 px-4 py-4 transition hover:bg-cream-2"
           >
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-4">
               <SpeakButton text={v.hiragana} size={19} className="h-8 w-8" />
               <div>
                 <div className="flex items-baseline gap-2">
