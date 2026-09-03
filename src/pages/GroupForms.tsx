@@ -46,11 +46,6 @@ export default function GroupForms() {
         ))}
       </div>
 
-      <div className="mt-6 flex items-center justify-between text-xs text-ink-soft">
-        <span>{group.forms.length === 1 ? '1 forma disponible' : `${group.forms.length} formas disponibles`}</span>
-        <span>Tocá una para practicar</span>
-      </div>
-
       {group.forms.length > 1 && (
         <button
           onClick={pickRandom}
