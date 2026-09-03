@@ -7,15 +7,20 @@ import BackButton from '../components/BackButton'
 import SpeakButton from '../components/SpeakButton'
 import { capitalize } from '../utils/text'
 
+type FilterTab = VerbTab | 'todos' | 'excepciones'
+
 export default function VerbList() {
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
-  const [tab, setTab] = useState<VerbTab | 'todos'>('todos')
+  const [tab, setTab] = useState<FilterTab>('todos')
+
+  const exceptionCount = useMemo(() => ALL_VERBS.filter((v) => v.exception).length, [])
 
   const verbs = useMemo(() => {
     const q = query.trim().toLowerCase()
     return ALL_VERBS.filter((v) => {
-      if (tab !== 'todos' && v.tab !== tab) return false
+      if (tab === 'excepciones' && !v.exception) return false
+      if (tab !== 'todos' && tab !== 'excepciones' && v.tab !== tab) return false
       if (!q) return true
       return (
         v.kanji.includes(q) ||
@@ -69,6 +74,16 @@ export default function VerbList() {
             {t.label}
           </button>
         ))}
+        <button
+          onClick={() => setTab('excepciones')}
+          className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition ${
+            tab === 'excepciones'
+              ? 'border-rose-500 bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300'
+              : 'border-card-border bg-surface text-ink-soft'
+          }`}
+        >
+          Excepciones ({exceptionCount})
+        </button>
       </div>
 
       <ul className="mt-5 divide-y divide-card-border overflow-hidden rounded-2xl border border-card-border bg-surface">
