@@ -1,5 +1,7 @@
 import { Link } from 'react-router'
+import { List } from 'lucide-react'
 import { FORM_GROUPS } from '../utils/verbConjugation'
+import { ALL_VERBS } from '../data/deck'
 import ListaLink from '../components/ListaLink'
 
 export default function Menu() {
@@ -39,6 +41,22 @@ export default function Menu() {
             <span className="text-sm text-ink-soft">{group.description}</span>
           </Link>
         ))}
+
+        <Link
+          to="/lista"
+          className="group flex items-center gap-4 rounded-3xl border border-card-border bg-surface p-5 text-left transition hover:border-accent hover:shadow-md sm:col-span-2"
+        >
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent">
+            <List size={26} />
+          </span>
+          <div className="min-w-0">
+            <span className="font-serif text-xl font-semibold text-ink group-hover:text-accent">
+              Lista de verbos
+            </span>
+            <p className="text-sm text-ink-soft">Buscá cualquier verbo y mirá todas sus formas conjugadas juntas.</p>
+          </div>
+          <span className="ml-auto shrink-0 text-xs font-medium text-ink-soft">{ALL_VERBS.length} verbos</span>
+        </Link>
       </div>
     </div>
   )
