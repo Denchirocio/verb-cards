@@ -1,6 +1,7 @@
 import { Navigate, useNavigate, useParams } from 'react-router'
 import { FORM_GROUPS, FORM_LABELS, FORM_TAG } from '../utils/verbConjugation'
 import BackButton from '../components/BackButton'
+import ListaLink from '../components/ListaLink'
 
 export default function GroupForms() {
   const { groupId } = useParams<{ groupId: string }>()
@@ -16,9 +17,12 @@ export default function GroupForms() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 py-8">
-      <div className="flex items-center gap-2">
-        <BackButton />
-        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">{group.title}</h1>
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2">
+          <BackButton />
+          <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">{group.title}</h1>
+        </div>
+        <ListaLink />
       </div>
 
       <div className="mt-6 grid grid-cols-2 gap-3">

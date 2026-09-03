@@ -1,12 +1,16 @@
 import { Link } from 'react-router'
 import { FORM_GROUPS } from '../utils/verbConjugation'
+import ListaLink from '../components/ListaLink'
 
 export default function Menu() {
   return (
     <div className="mx-auto w-full max-w-2xl flex-1 px-4 py-8">
-      <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">
-        Elegí un grupo
-      </h1>
+      <div className="flex items-center justify-between gap-3">
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">
+          Elegí un grupo
+        </h1>
+        <ListaLink />
+      </div>
       <p className="mt-2 text-ink-soft">
         Practicá la conjugación con cards que podés voltear.
       </p>

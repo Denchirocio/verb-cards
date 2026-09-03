@@ -5,6 +5,7 @@ import { ALL_VERBS } from '../data/deck'
 import { conjugate, FORM_LABELS, FORM_USAGE, getRule, type VerbForm } from '../utils/verbConjugation'
 import { shuffle } from '../utils/shuffle'
 import BackButton from '../components/BackButton'
+import ListaLink from '../components/ListaLink'
 
 const VALID_FORMS = new Set(Object.keys(FORM_LABELS))
 
@@ -39,18 +40,21 @@ export default function Practice() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center px-4 py-6">
-      <div className="flex w-full max-w-xl items-center justify-between">
-        <div className="flex items-center gap-2">
+      <div className="flex w-full max-w-xl items-center justify-between gap-2">
+        <div className="flex min-w-0 items-center gap-2">
           <BackButton />
-          <span className="font-serif text-xl font-semibold text-ink">{label.title}</span>
+          <span className="truncate font-serif text-xl font-semibold text-ink">{label.title}</span>
         </div>
-        <button
-          onClick={reshuffle}
-          className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft transition hover:bg-cream-2"
-          aria-label="Barajar de nuevo"
-        >
-          <Shuffle size={18} />
-        </button>
+        <div className="flex shrink-0 items-center gap-2">
+          <button
+            onClick={reshuffle}
+            className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft transition hover:bg-cream-2"
+            aria-label="Barajar de nuevo"
+          >
+            <Shuffle size={18} />
+          </button>
+          <ListaLink />
+        </div>
       </div>
 
       <div className="mt-6 flex w-full flex-1 items-center gap-3">
