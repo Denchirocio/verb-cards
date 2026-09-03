@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react'
 import { VERB_TABS, type VerbTab } from '../data/verbsData'
 import { ALL_VERBS } from '../data/deck'
 import { Search } from 'lucide-react'
+import BackButton from '../components/BackButton'
 
 export default function VerbList() {
   const [query, setQuery] = useState('')
@@ -23,9 +24,12 @@ export default function VerbList() {
 
   return (
     <div className="mx-auto w-full max-w-2xl flex-1 px-4 py-6">
-      <h1 className="font-serif text-2xl font-semibold tracking-tight text-ink">
-        Lista de verbos
-      </h1>
+      <div className="flex items-center gap-2">
+        <BackButton />
+        <h1 className="font-serif text-2xl font-semibold tracking-tight text-ink">
+          Lista de verbos
+        </h1>
+      </div>
 
       <div className="mt-4 flex items-center gap-2 rounded-full border border-card-border bg-white px-4 py-2.5">
         <Search size={18} className="text-ink-soft" />

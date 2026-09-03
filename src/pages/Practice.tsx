@@ -1,38 +1,16 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router'
 import { ChevronLeft, ChevronRight, Shuffle } from 'lucide-react'
-import { ALL_VERBS, type DeckVerb } from '../data/deck'
-import { conjugate, FORM_GROUPS, FORM_LABELS, FORM_USAGE, getRule, type VerbForm } from '../utils/verbConjugation'
+import { ALL_VERBS } from '../data/deck'
+import { conjugate, FORM_LABELS, FORM_USAGE, getRule, type VerbForm } from '../utils/verbConjugation'
 import { shuffle } from '../utils/shuffle'
+import BackButton from '../components/BackButton'
 
 const VALID_FORMS = new Set(Object.keys(FORM_LABELS))
 
-interface Pair {
-  verb: DeckVerb
-  form: VerbForm
-}
-
-function buildDeck(allowedForms: VerbForm[]): Pair[] {
-  return shuffle(ALL_VERBS).map((verb) => ({
-    verb,
-    form: allowedForms[Math.floor(Math.random() * allowedForms.length)],
-  }))
-}
-
 export default function Practice() {
-  const { form, groupId } = useParams<{ form?: string; groupId?: string }>()
-
-  const group = groupId ? FORM_GROUPS.find((g) => g.id === groupId) : undefined
-  const isGroupMode = Boolean(groupId)
-  const singleFormValid = !isGroupMode && form && VALID_FORMS.has(form)
-
-  const allowedForms = useMemo<VerbForm[]>(() => {
-    if (group) return group.forms
-    if (singleFormValid) return [form as VerbForm]
-    return []
-  }, [group, singleFormValid, form])
-
-  const [deck, setDeck] = useState<Pair[]>(() => buildDeck(allowedForms))
+  const { form } = useParams<{ form: string }>()
+  const [deck, setDeck] = useState(() => shuffle(ALL_VERBS))
   const [index, setIndex] = useState(0)
   const [flipped, setFlipped] = useState(false)
 
@@ -40,29 +18,32 @@ export default function Practice() {
     setFlipped(false)
   }, [index])
 
-  if (isGroupMode && !group) return <Navigate to="/" replace />
-  if (!isGroupMode && !singleFormValid) return <Navigate to="/" replace />
+  if (!form || !VALID_FORMS.has(form)) {
+    return <Navigate to="/" replace />
+  }
+  const verbForm = form as VerbForm
+  const label = FORM_LABELS[verbForm]
 
-  const pair = deck[index]
-  const label = FORM_LABELS[pair.form]
-  const conjugated = conjugate(pair.verb, pair.verb.tab, pair.form)
-  const rule = getRule(pair.verb, pair.verb.tab, pair.form)
-
-  const topTitle = group ? `Práctica: ${group.title}` : label.title
+  const verb = deck[index]
+  const conjugated = conjugate(verb, verb.tab, verbForm)
+  const rule = getRule(verb, verb.tab, verbForm)
 
   function go(delta: number) {
     setIndex((i) => (i + delta + deck.length) % deck.length)
   }
 
   function reshuffle() {
-    setDeck(buildDeck(allowedForms))
+    setDeck(shuffle(ALL_VERBS))
     setIndex(0)
   }
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col items-center px-4 py-6">
       <div className="flex w-full max-w-xl items-center justify-between">
-        <span className="font-serif text-xl font-semibold text-ink">{topTitle}</span>
+        <div className="flex items-center gap-2">
+          <BackButton />
+          <span className="font-serif text-xl font-semibold text-ink">{label.title}</span>
+        </div>
         <button
           onClick={reshuffle}
           className="flex h-9 w-9 items-center justify-center rounded-full text-ink-soft transition hover:bg-cream-2"
@@ -97,11 +78,11 @@ export default function Practice() {
           {!flipped ? (
             <div className="flex min-h-52 flex-col items-center justify-center gap-1.5 py-6 text-center">
               <span className="font-serif text-3xl font-semibold break-words text-ink sm:text-4xl">
-                {pair.verb.kanji}
+                {verb.kanji}
               </span>
-              <span className="text-lg text-ink-soft">{pair.verb.hiragana}</span>
-              <span className="text-sm italic text-ink-soft">{pair.verb.romaji}</span>
-              <span className="text-base text-ink-soft">{pair.verb.meaning}</span>
+              <span className="text-lg text-ink-soft">{verb.hiragana}</span>
+              <span className="text-sm italic text-ink-soft">{verb.romaji}</span>
+              <span className="text-base text-ink-soft">{verb.meaning}</span>
               <span className="mt-3 text-xs uppercase tracking-wide text-ink-soft/70">
                 Tocá la card para ver la respuesta
               </span>
@@ -116,13 +97,13 @@ export default function Practice() {
                 {conjugated.hiraganaStem}
                 <span className="text-accent">{conjugated.hiraganaEnding}</span>
               </span>
-              <span className="text-sm text-ink-soft">{pair.verb.meaning}</span>
+              <span className="text-sm text-ink-soft">{verb.meaning}</span>
               {rule && (
                 <span className="mt-1 rounded-lg border border-accent px-3 py-1.5 font-mono text-sm font-semibold text-accent">
                   {rule}
                 </span>
               )}
-              <p className="mt-1 max-w-sm text-xs leading-snug text-ink-soft/80">{FORM_USAGE[pair.form]}</p>
+              <p className="mt-1 max-w-sm text-xs leading-snug text-ink-soft/80">{FORM_USAGE[verbForm]}</p>
             </div>
           )}
         </button>

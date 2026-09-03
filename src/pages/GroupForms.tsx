@@ -1,5 +1,6 @@
 import { Navigate, useNavigate, useParams } from 'react-router'
 import { FORM_GROUPS, FORM_LABELS, FORM_TAG } from '../utils/verbConjugation'
+import BackButton from '../components/BackButton'
 
 export default function GroupForms() {
   const { groupId } = useParams<{ groupId: string }>()
@@ -14,13 +15,14 @@ export default function GroupForms() {
   }
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 py-8 pb-28">
+    <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 py-8">
       <span className={`w-fit rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${group.colorClass}`}>
         {group.title}
       </span>
-      <h1 className="mt-3 font-serif text-3xl font-semibold tracking-tight text-ink">
-        Elegí una forma
-      </h1>
+      <div className="mt-3 flex items-center gap-2">
+        <BackButton />
+        <h1 className="font-serif text-3xl font-semibold tracking-tight text-ink">Elegí una forma</h1>
+      </div>
       <p className="mt-2 text-ink-soft">{group.description}</p>
 
       <div className="mt-6 grid grid-cols-2 gap-3">
@@ -49,25 +51,14 @@ export default function GroupForms() {
         <span>Tocá una para practicar</span>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-10 border-t border-card-border bg-cream/95 px-4 py-4 backdrop-blur">
-        <div className="mx-auto flex w-full max-w-2xl flex-col items-center gap-2">
-          <button
-            onClick={() => navigate(`/practicar/grupo/${group.id}`)}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-base font-semibold text-white transition hover:opacity-90"
-          >
-            Empezar práctica con cards
-            <span aria-hidden>→</span>
-          </button>
-          {group.forms.length > 1 && (
-            <button
-              onClick={pickRandom}
-              className="text-sm text-ink-soft transition hover:text-accent"
-            >
-              🎲 ¿Indeciso? Elegir una forma al azar
-            </button>
-          )}
-        </div>
-      </div>
+      {group.forms.length > 1 && (
+        <button
+          onClick={pickRandom}
+          className="mt-6 self-center text-sm text-ink-soft transition hover:text-accent"
+        >
+          🎲 ¿Indeciso? Elegir una forma al azar
+        </button>
+      )}
     </div>
   )
 }

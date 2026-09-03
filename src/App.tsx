@@ -11,7 +11,6 @@ export default function App() {
       <Route element={<Layout />}>
         <Route path="/" element={<Menu />} />
         <Route path="/grupo/:groupId" element={<GroupForms />} />
-        <Route path="/practicar/grupo/:groupId" element={<Practice />} />
         <Route path="/practicar/:form" element={<Practice />} />
         <Route path="/lista" element={<VerbList />} />
       </Route>
