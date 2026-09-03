@@ -85,7 +85,14 @@ export default function VerbList() {
                   <span className="font-serif text-2xl font-semibold text-ink">{v.kanji}</span>
                   <span className="text-base text-ink-soft">{v.hiragana}</span>
                 </div>
-                <span className="text-sm text-ink-soft">{v.romaji}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-sm text-ink-soft">{v.romaji}</span>
+                  {v.exception && (
+                    <span className="rounded-full bg-rose-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-rose-700 dark:bg-rose-500/15 dark:text-rose-300">
+                      Excepción
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
             <span className="text-right text-base text-ink-soft">{capitalize(v.meaning)}</span>

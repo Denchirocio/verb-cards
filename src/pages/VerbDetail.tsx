@@ -22,9 +22,16 @@ export default function VerbDetail() {
       </div>
 
       <div className="mt-4 rounded-2xl border border-card-border bg-surface p-5 text-center">
-        <span className="inline-block rounded-full border border-card-border px-2.5 py-1 text-xs font-medium text-ink-soft">
-          {grupoLabel}
-        </span>
+        <div className="flex items-center justify-center gap-2">
+          <span className="inline-block rounded-full border border-card-border px-2.5 py-1 text-xs font-medium text-ink-soft">
+            {grupoLabel}
+          </span>
+          {verb.exception && (
+            <span className="rounded-full bg-rose-100 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-rose-700 dark:bg-rose-500/15 dark:text-rose-300">
+              Excepción
+            </span>
+          )}
+        </div>
         <div className="mt-2 font-serif text-4xl font-semibold text-ink">{verb.kanji}</div>
         <div className="mt-1 text-lg text-ink-soft">{verb.hiragana}</div>
         <div className="mt-1 flex items-center justify-center gap-2 text-sm italic text-ink-soft">
@@ -32,6 +39,11 @@ export default function VerbDetail() {
           <SpeakButton text={verb.hiragana} size={16} className="h-6 w-6" />
         </div>
         <div className="mt-2 text-base text-ink-soft">{capitalize(verb.meaning)}</div>
+        {verb.exception && (
+          <p className="mt-3 text-xs leading-snug text-rose-700 dark:text-rose-300">
+            Termina en -iru/-eru como los verbos de Grupo 2, pero se conjuga como Grupo 1 (godan) — ¡no te confundas!
+          </p>
+        )}
       </div>
 
       <div className="mt-6 flex flex-col gap-5">
