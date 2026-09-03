@@ -212,14 +212,79 @@ function gerundOfWord(word: string): string {
   return isReflexive ? attachReflexive(gerund) : gerund;
 }
 
-// ── Metadata de formas para el menú y las cards ─────────────────────────────
-export const FORM_GROUPS: { title: string; forms: VerbForm[] }[] = [
-  { title: 'Diccionario', forms: ['diccionario'] },
-  { title: 'Negativo (ない)', forms: ['nai', 'nakatta'] },
-  { title: 'Cortés (ます)', forms: ['masu', 'masen', 'mashita', 'masendeshita'] },
-  { title: 'Forma て / た', forms: ['te', 'ta'] },
-  { title: 'Progresivo (ている)', forms: ['teimasu', 'teimasen', 'teimashita', 'teimasendeshita'] },
-];
+// ── Metadata de grupos para el home y las cards de cada grupo ───────────────
+export interface FormGroup {
+  id: string
+  title: string
+  jp: string
+  description: string
+  colorClass: string
+  forms: VerbForm[]
+}
+
+export const FORM_GROUPS: FormGroup[] = [
+  {
+    id: 'basica',
+    title: 'Diccionario',
+    jp: '辞書形',
+    description: 'La forma neutra, la que aparece en el diccionario.',
+    colorClass: 'bg-amber-100 text-amber-700',
+    forms: ['diccionario'],
+  },
+  {
+    id: 'cortes',
+    title: 'Cortés',
+    jp: 'ます',
+    description: 'Presente y pasado, afirmativo y negativo, en registro formal.',
+    colorClass: 'bg-indigo-100 text-indigo-700',
+    forms: ['masu', 'masen', 'mashita', 'masendeshita'],
+  },
+  {
+    id: 'negativo',
+    title: 'Negativo',
+    jp: 'ない',
+    description: 'Negación informal, presente y pasado.',
+    colorClass: 'bg-rose-100 text-rose-700',
+    forms: ['nai', 'nakatta'],
+  },
+  {
+    id: 'te-ta',
+    title: 'Forma て・た',
+    jp: 'て・た',
+    description: 'Conectar oraciones (て) y el pasado informal (た).',
+    colorClass: 'bg-accent-soft text-accent',
+    forms: ['te', 'ta'],
+  },
+  {
+    id: 'progresivo',
+    title: 'Progresivo',
+    jp: 'ている',
+    description: 'Acción en curso o estado resultante, en las cuatro variantes.',
+    colorClass: 'bg-sky-100 text-sky-700',
+    forms: ['teimasu', 'teimasen', 'teimashita', 'teimasendeshita'],
+  },
+]
+
+export const ALL_FORMS: VerbForm[] = FORM_GROUPS.flatMap((g) => g.forms)
+
+// Categoría semántica de cada forma para la card del menú — más fina que
+// FORM_GROUPS (て y た comparten grupo pero cumplen roles distintos: una
+// conecta oraciones, la otra es el pasado informal en sí).
+export const FORM_TAG: Record<VerbForm, { label: string; className: string }> = {
+  diccionario:     { label: 'Básica',     className: 'bg-amber-100 text-amber-700' },
+  nai:             { label: 'Negativo',   className: 'bg-rose-100 text-rose-700' },
+  nakatta:         { label: 'Negativo',   className: 'bg-rose-100 text-rose-700' },
+  masu:            { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700' },
+  masen:           { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700' },
+  mashita:         { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700' },
+  masendeshita:    { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700' },
+  te:              { label: 'Conexión',   className: 'bg-accent-soft text-accent' },
+  ta:              { label: 'Informal',   className: 'bg-slate-100 text-slate-600' },
+  teimasu:         { label: 'Progresivo', className: 'bg-sky-100 text-sky-700' },
+  teimasen:        { label: 'Progresivo', className: 'bg-sky-100 text-sky-700' },
+  teimashita:      { label: 'Progresivo', className: 'bg-sky-100 text-sky-700' },
+  teimasendeshita: { label: 'Progresivo', className: 'bg-sky-100 text-sky-700' },
+}
 
 export const FORM_LABELS: Record<VerbForm, { title: string; jp: string }> = {
   diccionario:    { title: 'Diccionario',                        jp: '辞書形' },
