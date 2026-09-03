@@ -34,7 +34,7 @@ export default function Menu() {
               <span className="font-serif text-4xl font-semibold text-ink group-hover:text-accent">
                 {group.jp}
               </span>
-              <span className="block text-sm italic text-ink-soft">{group.romaji}</span>
+              <span className="block text-sm italic tracking-wide text-ink-soft">{group.romaji.toUpperCase()}</span>
             </div>
             <span className="text-sm text-ink-soft">{group.description}</span>
           </Link>

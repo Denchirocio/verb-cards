@@ -9,6 +9,8 @@ export default function SpeakButton({ text, size = 18, className = '' }: { text:
         e.stopPropagation()
         speakJapanese(text)
       }}
+      onPointerDown={(e) => e.stopPropagation()}
+      onPointerUp={(e) => e.stopPropagation()}
       className={`flex shrink-0 items-center justify-center rounded-full text-ink-soft transition hover:bg-cream-2 hover:text-accent ${className}`}
       aria-label={`Escuchar ${text}`}
     >
