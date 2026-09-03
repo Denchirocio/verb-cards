@@ -44,18 +44,18 @@ export default function Menu() {
 
         <Link
           to="/lista"
-          className="group flex items-center gap-4 rounded-3xl border border-card-border bg-surface p-5 text-left transition hover:border-accent hover:shadow-md sm:col-span-2"
+          className="group flex flex-col gap-3 rounded-3xl border border-card-border bg-surface p-5 text-left transition hover:border-accent hover:shadow-md"
         >
-          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-accent-soft text-accent">
-            <List size={26} />
-          </span>
-          <div className="min-w-0">
-            <span className="font-serif text-xl font-semibold text-ink group-hover:text-accent">
-              Lista de verbos
+          <div className="flex items-center justify-between">
+            <span className="rounded-full bg-accent-soft px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-accent">
+              Lista
             </span>
-            <p className="text-sm text-ink-soft">Buscá cualquier verbo y mirá todas sus formas conjugadas juntas.</p>
+            <span className="text-xs font-medium text-ink-soft">{ALL_VERBS.length} verbos</span>
           </div>
-          <span className="ml-auto shrink-0 text-xs font-medium text-ink-soft">{ALL_VERBS.length} verbos</span>
+          <div>
+            <List size={40} strokeWidth={1.75} className="text-ink group-hover:text-accent" />
+          </div>
+          <span className="text-sm text-ink-soft">Buscá cualquier verbo y mirá todas sus formas conjugadas juntas.</span>
         </Link>
       </div>
     </div>
