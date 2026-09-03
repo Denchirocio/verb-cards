@@ -36,7 +36,7 @@ export default function GroupForms() {
               <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${FORM_TAG[form].className}`}>
                 {FORM_TAG[form].label}
               </span>
-              <span className="h-2 w-2 rounded-full bg-ink-soft/25" />
+              <span className={`h-2 w-2 rounded-full ${FORM_TAG[form].dotClassName}`} />
             </div>
             <span className="font-serif text-xl font-semibold text-ink group-hover:text-accent">
               {FORM_LABELS[form].jp}

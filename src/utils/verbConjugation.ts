@@ -276,20 +276,20 @@ export const ALL_FORMS: VerbForm[] = FORM_GROUPS.flatMap((g) => g.forms)
 // Categoría semántica de cada forma para la card del menú — más fina que
 // FORM_GROUPS (て y た comparten grupo pero cumplen roles distintos: una
 // conecta oraciones, la otra es el pasado informal en sí).
-export const FORM_TAG: Record<VerbForm, { label: string; className: string }> = {
-  diccionario:     { label: 'Básica',     className: 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300' },
-  nai:             { label: 'Negativo',   className: 'bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300' },
-  nakatta:         { label: 'Negativo',   className: 'bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300' },
-  masu:            { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300' },
-  masen:           { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300' },
-  mashita:         { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300' },
-  masendeshita:    { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300' },
-  te:              { label: 'Conexión',   className: 'bg-accent-soft text-accent' },
-  ta:              { label: 'Informal',   className: 'bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-300' },
-  teimasu:         { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300' },
-  teimasen:        { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300' },
-  teimashita:      { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300' },
-  teimasendeshita: { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300' },
+export const FORM_TAG: Record<VerbForm, { label: string; className: string; dotClassName: string }> = {
+  diccionario:     { label: 'Básica',     className: 'bg-amber-100 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300', dotClassName: 'bg-amber-500' },
+  nai:             { label: 'Negativo',   className: 'bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300', dotClassName: 'bg-rose-500' },
+  nakatta:         { label: 'Negativo',   className: 'bg-rose-100 text-rose-700 dark:bg-rose-500/15 dark:text-rose-300', dotClassName: 'bg-rose-500' },
+  masu:            { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300', dotClassName: 'bg-indigo-500' },
+  masen:           { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300', dotClassName: 'bg-indigo-500' },
+  mashita:         { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300', dotClassName: 'bg-indigo-500' },
+  masendeshita:    { label: 'Cortés',     className: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-500/15 dark:text-indigo-300', dotClassName: 'bg-indigo-500' },
+  te:              { label: 'Conexión',   className: 'bg-accent-soft text-accent', dotClassName: 'bg-accent' },
+  ta:              { label: 'Informal',   className: 'bg-slate-100 text-slate-600 dark:bg-slate-500/15 dark:text-slate-300', dotClassName: 'bg-slate-500' },
+  teimasu:         { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300', dotClassName: 'bg-sky-500' },
+  teimasen:        { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300', dotClassName: 'bg-sky-500' },
+  teimashita:      { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300', dotClassName: 'bg-sky-500' },
+  teimasendeshita: { label: 'Progresivo', className: 'bg-sky-100 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300', dotClassName: 'bg-sky-500' },
 }
 
 export const FORM_LABELS: Record<VerbForm, { title: string; jp: string }> = {
