@@ -225,8 +225,6 @@ export default function Practice() {
             )}
           </div>
         </div>
-
-        <p className="mt-4 text-xs text-ink-soft">Deslizá la card a los costados para cambiar de verbo</p>
       </div>
     </div>
   )
