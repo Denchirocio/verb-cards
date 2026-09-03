@@ -237,6 +237,24 @@ export const FORM_LABELS: Record<VerbForm, { title: string; jp: string }> = {
   teimasendeshita:{ title: 'Progresivo pasado negativo',         jp: 'ていませんでした形' },
 };
 
+// Para qué se usa cada forma — lo que le da sentido a la conjugación en vez
+// de mostrar solo el resultado (qué frase arma, con qué se conecta).
+export const FORM_USAGE: Record<VerbForm, string> = {
+  diccionario:      'Forma neutra/informal. Es la que aparece en el diccionario y en 〜と思う, 〜前に.',
+  nai:              'Negación informal del presente: "no como".',
+  nakatta:          'Negación informal del pasado: "no comí".',
+  masu:             'Forma cortés del presente, para hablar con desconocidos o en formal.',
+  masen:            'Negación cortés del presente.',
+  mashita:          'Pasado cortés.',
+  masendeshita:     'Negación cortés del pasado.',
+  te:               'Conecta ideas: 〜てください (pedir), 〜てもいい (permiso), 〜ている (progresivo).',
+  ta:               'Pasado informal. Base de 〜たことがある (experiencia) y 〜たり (enumerar).',
+  teimasu:          'Acción en curso o estado resultante: "está haciendo" / "está hecho".',
+  teimasen:         'Negación de la acción en curso o del estado.',
+  teimashita:       'Acción en curso en el pasado: "estaba haciendo".',
+  teimasendeshita:  'Negación de la acción en curso en el pasado.',
+}
+
 // Texto corto de la regla que produjo la conjugación (ej. "く→いて"), para
 // mostrar "el patrón" junto a la respuesta en vez de solo la respuesta sola.
 export function getRule(verb: Verb, tab: VerbTab, form: VerbForm): string {

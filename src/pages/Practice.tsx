@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Navigate, useParams } from 'react-router'
 import { ChevronLeft, ChevronRight, Shuffle } from 'lucide-react'
 import { ALL_VERBS } from '../data/deck'
-import { conjugate, FORM_LABELS, getRule, type VerbForm } from '../utils/verbConjugation'
+import { conjugate, FORM_LABELS, FORM_USAGE, getRule, type VerbForm } from '../utils/verbConjugation'
 import { shuffle } from '../utils/shuffle'
 
 const VALID_FORMS = new Set(Object.keys(FORM_LABELS))
@@ -82,7 +82,7 @@ export default function Practice() {
               </span>
             </div>
           ) : (
-            <div className="flex h-[calc(100%-2rem)] flex-col items-center justify-center gap-2 text-center">
+            <div className="flex h-[calc(100%-2rem)] flex-col items-center justify-center gap-1.5 text-center">
               <span className="font-serif text-4xl font-semibold text-ink sm:text-5xl">
                 {conjugated.kanjiStem}
                 <span className="text-accent">{conjugated.kanjiEnding}</span>
@@ -91,11 +91,15 @@ export default function Practice() {
                 {conjugated.hiraganaStem}
                 <span className="text-accent">{conjugated.hiraganaEnding}</span>
               </span>
+              <span className="text-sm text-ink-soft">{verb.meaning}</span>
               {rule && (
-                <span className="mt-2 rounded-lg border border-accent px-3 py-1.5 font-mono text-sm font-semibold text-accent">
+                <span className="mt-1 rounded-lg border border-accent px-3 py-1.5 font-mono text-sm font-semibold text-accent">
                   {rule}
                 </span>
               )}
+              <p className="mt-1 max-w-sm text-xs leading-snug text-ink-soft/80">
+                {FORM_USAGE[verbForm]}
+              </p>
             </div>
           )}
         </button>
