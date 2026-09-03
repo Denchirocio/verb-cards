@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Navigate, useParams } from 'react-router'
 import { ChevronLeft, ChevronRight, Shuffle } from 'lucide-react'
 import { ALL_VERBS } from '../data/deck'
-import { conjugate, FORM_LABELS, FORM_USAGE, getRule, type VerbForm } from '../utils/verbConjugation'
+import { conjugate, FORM_LABELS, FORM_TAG, FORM_USAGE, getRule, type VerbForm } from '../utils/verbConjugation'
 import { shuffle } from '../utils/shuffle'
 import BackButton from '../components/BackButton'
 import ListaLink from '../components/ListaLink'
@@ -77,7 +77,7 @@ export default function Practice() {
           className="relative w-full max-w-xl cursor-pointer rounded-3xl border border-card-border bg-white p-6 text-left shadow-sm transition hover:shadow-md"
         >
           <div className="flex items-center justify-between">
-            <span className="rounded-full bg-accent-soft px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-accent">
+            <span className={`rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-wide ${FORM_TAG[verbForm].className}`}>
               {label.jp}
             </span>
             <span className="text-xs font-medium text-ink-soft">
