@@ -33,6 +33,7 @@ export default function Practice() {
   const [deck, setDeck] = useState(() => weightedShuffle(ALL_VERBS, getKnownSet()))
   const [index, setIndex] = useState(0)
   const [flipped, setFlipped] = useState(false)
+  const [flipping, setFlipping] = useState(false)
 
   const [dragX, setDragX] = useState(0)
   const [dragging, setDragging] = useState(false)
@@ -125,12 +126,18 @@ export default function Practice() {
     }
   }
 
+  function triggerFlip() {
+    setFlipping(true)
+    setFlipped((f) => !f)
+    window.setTimeout(() => setFlipping(false), 520)
+  }
+
   function handleCardClick() {
     if (suppressClickRef.current) {
       suppressClickRef.current = false
       return
     }
-    setFlipped((f) => !f)
+    triggerFlip()
   }
 
   return (
@@ -159,19 +166,23 @@ export default function Practice() {
 
       <div className="mt-4 flex w-full flex-1 flex-col items-center">
         <div className="relative w-full min-h-[480px] max-w-xl flex-1">
-          <div
-            aria-hidden
-            className="absolute inset-0 rounded-3xl border border-card-border bg-cream-2"
-            style={{ transform: 'scale(0.92) translateY(18px)' }}
-          />
-          <div
-            aria-hidden
-            className="absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-3xl border border-card-border bg-surface text-center"
-            style={{ transform: 'scale(0.96) translateY(9px)' }}
-          >
-            <span className="font-serif text-3xl font-semibold text-ink/30 sm:text-4xl">{peekVerb.kanji}</span>
-            <span className="text-sm text-ink-soft/40">{peekVerb.hiragana}</span>
-          </div>
+          {!flipping && (
+            <>
+              <div
+                aria-hidden
+                className="absolute inset-0 rounded-3xl border border-card-border bg-cream-2"
+                style={{ transform: 'scale(0.92) translateY(18px)' }}
+              />
+              <div
+                aria-hidden
+                className="absolute inset-0 flex flex-col items-center justify-center gap-1 rounded-3xl border border-card-border bg-surface text-center"
+                style={{ transform: 'scale(0.96) translateY(9px)' }}
+              >
+                <span className="font-serif text-3xl font-semibold text-ink/30 sm:text-4xl">{peekVerb.kanji}</span>
+                <span className="text-sm text-ink-soft/40">{peekVerb.hiragana}</span>
+              </div>
+            </>
+          )}
 
           <div
             role="button"
@@ -180,7 +191,7 @@ export default function Practice() {
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault()
-                setFlipped((f) => !f)
+                triggerFlip()
               }
               if (e.key === 'ArrowRight') go(1)
               if (e.key === 'ArrowLeft') go(-1)
