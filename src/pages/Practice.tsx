@@ -193,67 +193,94 @@ export default function Practice() {
               transform: `translateX(${dragX}px) rotate(${dragX / 28}deg)`,
               transition: dragging || suppressTransition ? 'none' : 'transform 220ms ease',
               touchAction: 'pan-y',
+              perspective: '1600px',
             }}
-            className="absolute inset-0 flex cursor-grab select-none flex-col rounded-3xl border border-card-border bg-surface p-6 text-left shadow-sm active:cursor-grabbing"
+            className="absolute inset-0 cursor-grab select-none active:cursor-grabbing"
           >
-            <div className="flex items-center justify-between">
-              <span className={`rounded-full px-3 py-1.5 text-sm font-bold uppercase tracking-wide ${FORM_TAG[verbForm].className}`}>
-                {label.jp}
-              </span>
-              <span className="rounded-full border border-card-border px-3 py-1.5 text-sm font-medium text-ink-soft">
-                Grupo {GRUPO_NUM[verb.tab]} · {grupoLabel}
-              </span>
-            </div>
-
-            {!flipped ? (
-              <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
-                <span className="text-xl text-ink-soft">{verb.hiragana}</span>
-                <span className="font-serif text-5xl font-semibold break-words text-ink sm:text-6xl">
-                  {verb.kanji}
-                </span>
-                <span className="text-lg italic tracking-wide text-ink-soft">{verb.romaji.toUpperCase()}</span>
-                <SpeakButton text={verb.hiragana} size={24} className="h-11 w-11" />
-                <div className="my-1 h-px w-16 bg-card-border" />
-                <span className="text-2xl text-ink-soft">{capitalize(verb.meaning)}</span>
-                <div className="my-1 h-px w-16 bg-card-border" />
-                <span className="flex items-center gap-1.5 text-sm uppercase tracking-wide text-ink-soft">
-                  <RefreshCw size={14} />
-                  Tocá para voltear
-                </span>
-                <div className="mt-10">
-                  <KnownToggle known={known} onToggle={handleToggleKnown} />
-                </div>
-              </div>
-            ) : (
-              <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
-                <span className="break-words text-xl text-ink-soft">
-                  {conjugated.hiraganaStem}
-                  <span className="text-accent">{conjugated.hiraganaEnding}</span>
-                </span>
-                <span className="font-serif text-5xl font-semibold break-words text-ink sm:text-6xl">
-                  {conjugated.kanjiStem}
-                  <span className="text-accent">{conjugated.kanjiEnding}</span>
-                </span>
-                <span className="text-lg italic tracking-wide text-ink-soft">{conjugatedRomaji}</span>
-                <SpeakButton
-                  text={`${conjugated.hiraganaStem}${conjugated.hiraganaEnding}`}
-                  size={24}
-                  className="h-11 w-11"
-                />
-                <div className="my-1 h-px w-16 bg-card-border" />
-                <span className="text-2xl text-ink-soft">{capitalize(verb.meaning)}</span>
-                {rule && (
-                  <span className="mt-1 rounded-lg border border-accent px-3.5 py-2 font-mono text-base font-semibold text-accent">
-                    {rule}
+            <div
+              className="relative h-full w-full transition-transform duration-500 ease-in-out"
+              style={{ transformStyle: 'preserve-3d', transform: flipped ? 'rotateY(180deg)' : 'rotateY(0deg)' }}
+            >
+              {/* Frente */}
+              <div
+                aria-hidden={flipped}
+                inert={flipped}
+                style={{ backfaceVisibility: 'hidden' }}
+                className="absolute inset-0 flex flex-col rounded-3xl border border-card-border bg-surface p-6 text-left shadow-sm"
+              >
+                <div className="flex items-center justify-between">
+                  <span className={`rounded-full px-3 py-1.5 text-sm font-bold uppercase tracking-wide ${FORM_TAG[verbForm].className}`}>
+                    {label.jp}
                   </span>
-                )}
-                <div className="my-1 h-px w-16 bg-card-border" />
-                <p className="max-w-sm text-sm leading-snug text-ink-soft">{FORM_USAGE[verbForm]}</p>
-                <div className="mt-10">
-                  <KnownToggle known={known} onToggle={handleToggleKnown} />
+                  <span className="rounded-full border border-card-border px-3 py-1.5 text-sm font-medium text-ink-soft">
+                    Grupo {GRUPO_NUM[verb.tab]} · {grupoLabel}
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
+                  <span className="text-xl text-ink-soft">{verb.hiragana}</span>
+                  <span className="font-serif text-5xl font-semibold break-words text-ink sm:text-6xl">
+                    {verb.kanji}
+                  </span>
+                  <span className="text-lg italic tracking-wide text-ink-soft">{verb.romaji.toUpperCase()}</span>
+                  <SpeakButton text={verb.hiragana} size={24} className="h-11 w-11" />
+                  <div className="my-1 h-px w-16 bg-card-border" />
+                  <span className="text-2xl text-ink-soft">{capitalize(verb.meaning)}</span>
+                  <div className="my-1 h-px w-16 bg-card-border" />
+                  <span className="flex items-center gap-1.5 text-sm uppercase tracking-wide text-ink-soft">
+                    <RefreshCw size={14} />
+                    Tocá para voltear
+                  </span>
+                  <div className="mt-10">
+                    <KnownToggle known={known} onToggle={handleToggleKnown} />
+                  </div>
                 </div>
               </div>
-            )}
+
+              {/* Dorso */}
+              <div
+                aria-hidden={!flipped}
+                inert={!flipped}
+                style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                className="absolute inset-0 flex flex-col rounded-3xl border border-card-border bg-surface p-6 text-left shadow-sm"
+              >
+                <div className="flex items-center justify-between">
+                  <span className={`rounded-full px-3 py-1.5 text-sm font-bold uppercase tracking-wide ${FORM_TAG[verbForm].className}`}>
+                    {label.jp}
+                  </span>
+                  <span className="rounded-full border border-card-border px-3 py-1.5 text-sm font-medium text-ink-soft">
+                    Grupo {GRUPO_NUM[verb.tab]} · {grupoLabel}
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col items-center justify-center gap-3 text-center">
+                  <span className="break-words text-xl text-ink-soft">
+                    {conjugated.hiraganaStem}
+                    <span className="text-accent">{conjugated.hiraganaEnding}</span>
+                  </span>
+                  <span className="font-serif text-5xl font-semibold break-words text-ink sm:text-6xl">
+                    {conjugated.kanjiStem}
+                    <span className="text-accent">{conjugated.kanjiEnding}</span>
+                  </span>
+                  <span className="text-lg italic tracking-wide text-ink-soft">{conjugatedRomaji}</span>
+                  <SpeakButton
+                    text={`${conjugated.hiraganaStem}${conjugated.hiraganaEnding}`}
+                    size={24}
+                    className="h-11 w-11"
+                  />
+                  <div className="my-1 h-px w-16 bg-card-border" />
+                  <span className="text-2xl text-ink-soft">{capitalize(verb.meaning)}</span>
+                  {rule && (
+                    <span className="mt-1 rounded-lg border border-accent px-3.5 py-2 font-mono text-base font-semibold text-accent">
+                      {rule}
+                    </span>
+                  )}
+                  <div className="my-1 h-px w-16 bg-card-border" />
+                  <p className="max-w-sm text-sm leading-snug text-ink-soft">{FORM_USAGE[verbForm]}</p>
+                  <div className="mt-10">
+                    <KnownToggle known={known} onToggle={handleToggleKnown} />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
